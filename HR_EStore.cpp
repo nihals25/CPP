@@ -4,7 +4,7 @@ using namespace std;
 
 int getMoneySpent(vector < int > keyboards, vector < int > drives, int s){
     // Complete this function
-    sort(keyboards.begin(), keyboards.end());
+    sort(keyboards.begin(), keyboards.end(), greater<int>());
     sort(drives.begin(), drives.end());
     vector<int>::iterator it1=keyboards.begin();
     int total=0, max=0;
@@ -12,7 +12,9 @@ int getMoneySpent(vector < int > keyboards, vector < int > drives, int s){
         vector<int>::iterator it2=drives.begin();
         for(;it2!=drives.end();++it2) {
             total = *it1 + *it2;
-            if(max < total && total <= s) {
+            if(total > s)
+                break;
+            if(max < total) {
                 max = total;
             }    
         }        
